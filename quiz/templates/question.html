@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ question.text }}</h2>
+<form method="POST" action="{% url 'submit_answer' question.id %}">
+    {% csrf_token %}
+    <div class="question-container">
+        <input type="radio" name="answer" value="A" required> <span>{{ question.option_a }}</span>
+    </div>
+    <div class="question-container">
+        <input type="radio" name="answer" value="B"> <span>{{ question.option_b }}</span>
+    </div>
+    <div class="question-container">
+        <input type="radio" name="answer" value="C"> <span>{{ question.option_c }}</span>
+    </div>
+    <div class="question-container">
+        <input type="radio" name="answer" value="D"> <span>{{ question.option_d }}</span>
+    </div>
+    <button type="submit" class="submit-button">Submit</button>
+</form>
+
+<style>
+    /* Styling the question */
+    h2 {
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Styling each answer option */
+    .question-container {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    .question-container input[type="radio"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+    }
+
+    .question-container span {
+        font-size: 18px;
+        color: #555;
+    }
+
+    /* Styling the submit button */
+    .submit-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
